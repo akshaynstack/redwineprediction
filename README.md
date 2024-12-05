@@ -19,7 +19,7 @@ redwineprediction/
 ├── model/                # Directory containing the trained model file
 │   └── wine_quality_model.pkl
 ├── static/               # Directory for static files (CSS, images, etc.)
-│   └── style.css         # CSS file for styling the frontend
+│   └── styles.css         # CSS file for styling the frontend
 ├── templates/            # Directory for HTML templates
 │   └── index.html        # Main HTML file for user input
 ├── train_model.py        # Python file to generate model
