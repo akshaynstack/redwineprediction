@@ -65,6 +65,11 @@ The app should now be accessible at `http://127.0.0.1:5000/`.
 - **Backend**: Python 3.11, Flask
 - **Frontend**: HTML, CSS, TailwindCSS (via CDN)
 
+## Datasets got from
+- ```
+  https://archive.ics.uci.edu/dataset/186/wine+quality
+  ```
+
 ## Customization
 - **Styling**: Edit the `static/style.css` for custom styles.
 - **Backend**: Modify `app.py` to include more complex logic or integrate additional features.
