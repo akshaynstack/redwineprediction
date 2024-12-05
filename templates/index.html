@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Wine Quality Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-r from-purple-100 via-blue-100 to-green-100 flex items-center justify-center min-h-screen p-6">
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl border border-gray-300">
+        <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8">Red Wine Quality Prediction</h1>
+        <form id="predictForm" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="fixed_acidity" class="block text-gray-700 font-medium mb-2">Fixed Acidity:</label>
+                    <input type="number" step="0.01" id="fixed_acidity" name="fixed_acidity" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="volatile_acidity" class="block text-gray-700 font-medium mb-2">Volatile Acidity:</label>
+                    <input type="number" step="0.01" id="volatile_acidity" name="volatile_acidity" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="citric_acid" class="block text-gray-700 font-medium mb-2">Citric Acid:</label>
+                    <input type="number" step="0.01" id="citric_acid" name="citric_acid" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="residual_sugar" class="block text-gray-700 font-medium mb-2">Residual Sugar:</label>
+                    <input type="number" step="0.01" id="residual_sugar" name="residual_sugar" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="chlorides" class="block text-gray-700 font-medium mb-2">Chlorides:</label>
+                    <input type="number" step="0.01" id="chlorides" name="chlorides" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="free_sulfur_dioxide" class="block text-gray-700 font-medium mb-2">Free Sulfur Dioxide:</label>
+                    <input type="number" step="0.01" id="free_sulfur_dioxide" name="free_sulfur_dioxide" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="total_sulfur_dioxide" class="block text-gray-700 font-medium mb-2">Total Sulfur Dioxide:</label>
+                    <input type="number" step="0.01" id="total_sulfur_dioxide" name="total_sulfur_dioxide" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="density" class="block text-gray-700 font-medium mb-2">Density:</label>
+                    <input type="number" step="0.0001" id="density" name="density" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="pH" class="block text-gray-700 font-medium mb-2">pH:</label>
+                    <input type="number" step="0.01" id="pH" name="pH" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="sulphates" class="block text-gray-700 font-medium mb-2">Sulphates:</label>
+                    <input type="number" step="0.01" id="sulphates" name="sulphates" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+
+                <div>
+                    <label for="alcohol" class="block text-gray-700 font-medium mb-2">Alcohol:</label>
+                    <input type="number" step="0.01" id="alcohol" name="alcohol" required class="w-full border-2 border-gray-400 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Predict</button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div id="resultModal" class="fixed inset-0 bg-gray-500 bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md transform transition-transform scale-0 animate-popIn">
+            <h2 class="text-xl font-bold text-center mb-4">Prediction Result</h2>
+            <p id="result" class="text-center text-gray-700 font-medium mb-6"></p>
+            <div class="flex justify-center">
+                <button id="closeModal" class="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('predictForm');
+        const resultModal = document.getElementById('resultModal');
+        const resultElement = document.getElementById('result');
+        const closeModalButton = document.getElementById('closeModal');
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = parseFloat(value));
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            resultElement.innerText = `Predicted Quality: ${result.quality}`;
+            resultModal.classList.remove('hidden');
+        };
+
+        closeModalButton.onclick = () => {
+            resultModal.classList.add('hidden');
+        };
+
+        resultModal.onclick = (e) => {
+            if (e.target === resultModal) {
+                resultModal.classList.add('hidden');
+            }
+        };
+    </script>
+
+    <style>
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .animate-popIn {
+            animation: popIn 0.3s ease-out forwards;
+        }
+    </style>
+</body>
+</html>
